@@ -9,15 +9,20 @@
 import UIKit
 import SnapKit
 import AVFoundation
+import RxCocoa
+import RxSwift
 
 class MusicVC: UIViewController {
 
     var player: AVAudioPlayer?
     private var dataSource: [MusicModel] = []
+    private var collectionView: UICollectionView!
+    private let disposeBag = DisposeBag()
     override func viewDidLoad() {
         super.viewDidLoad()
         visualize()
-        playSound()
+//        playSound()
+        setupRX()
     }
 
 }
@@ -43,9 +48,7 @@ extension MusicVC {
         layout.itemSize = CGSize(width: (self.view.bounds.width - 30) / 2, height: 150)
         layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.delegate = self
-        collectionView.dataSource = self
+        collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(MusicCell.nib, forCellWithReuseIdentifier: MusicCell.identifier)
         
         self.view.addSubview(collectionView)
@@ -81,21 +84,34 @@ extension MusicVC {
             print(error.localizedDescription)
         }
     }
+    private func setupRX() {
+        Observable.just(dataSource)
+            .bind(to: collectionView.rx.items(cellIdentifier: MusicCell.identifier, cellType: MusicCell.self)) {[weak self] (row, element, cell) in
+                guard let wSelf = self else {
+                    return
+                }
+                cell.updateUI(model: wSelf.dataSource[row])
+        }.disposed(by: disposeBag)
+        
+        collectionView.rx.itemSelected.bind { (idx) in
+            let vc = MusicDetail(nibName: "MusicDetail", bundle: nil)
+            self.navigationController?.pushViewController(vc, animated: true)
+        }.disposed(by: disposeBag)
+    }
 }
-extension MusicVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.dataSource.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MusicCell.identifier, for: indexPath) as! MusicCell
-        cell.updateUI(model: self.dataSource[indexPath.row])
-        return cell
-    }
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let vc = MusicDetail(nibName: "MusicDetail", bundle: nil)
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
-    
-    
-}
+//extension MusicVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        return self.dataSource.count
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MusicCell.identifier, for: indexPath) as! MusicCell
+//        cell.updateUI(model: self.dataSource[indexPath.row])
+//        return cell
+//    }
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//
+//    }
+//
+//
+//}

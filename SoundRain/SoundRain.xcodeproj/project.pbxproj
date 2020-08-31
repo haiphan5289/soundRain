@@ -25,6 +25,7 @@
 		1B87FAD124F1608B00515716 /* HomeTabbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B87FAD024F1608B00515716 /* HomeTabbar.swift */; };
 		1B87FAD524F1610E00515716 /* MusicVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B87FAD424F1610E00515716 /* MusicVC.swift */; };
 		1B87FAD724F1611D00515716 /* PostProductVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B87FAD624F1611D00515716 /* PostProductVC.swift */; };
+		1BA7E6F924FD3A5500F8A69D /* test.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1BA7E6F824FD3A5400F8A69D /* test.mp3 */; };
 		52A818292D7DAC78C0036958 /* Pods_SoundRain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BF57AA65E00EC655E881BE2 /* Pods_SoundRain.framework */; };
 /* End PBXBuildFile section */
 
@@ -50,6 +51,7 @@
 		1B87FAD024F1608B00515716 /* HomeTabbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabbar.swift; sourceTree = "<group>"; };
 		1B87FAD424F1610E00515716 /* MusicVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicVC.swift; sourceTree = "<group>"; };
 		1B87FAD624F1611D00515716 /* PostProductVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostProductVC.swift; sourceTree = "<group>"; };
+		1BA7E6F824FD3A5400F8A69D /* test.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = test.mp3; sourceTree = "<group>"; };
 		4B33649669306461DC1D1B61 /* Pods-SoundRain.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoundRain.release.xcconfig"; path = "Target Support Files/Pods-SoundRain/Pods-SoundRain.release.xcconfig"; sourceTree = "<group>"; };
 		55C25584C636C27D1653419D /* Pods-SoundRain.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoundRain.debug.xcconfig"; path = "Target Support Files/Pods-SoundRain/Pods-SoundRain.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -69,6 +71,7 @@
 		1B444F1F24F2A6B1004F84F8 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				1BA7E6F824FD3A5400F8A69D /* test.mp3 */,
 				1B444F2024F2A6C6004F84F8 /* soundRain.mp3 */,
 			);
 			path = Data;
@@ -260,6 +263,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1BA7E6F924FD3A5500F8A69D /* test.mp3 in Resources */,
 				1B444F2124F2A6C6004F84F8 /* soundRain.mp3 in Resources */,
 				1B87FAC024F157C100515716 /* LaunchScreen.storyboard in Resources */,
 				1B87FAC824F15A4500515716 /* GoogleService-Info.plist in Resources */,
